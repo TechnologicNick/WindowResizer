@@ -2,7 +2,15 @@
     Private Sub btnResize_Click(sender As Object, e As EventArgs) Handles btnResize.Click
         'HookUtil.SetWindowPos("Worlds Adrift", 0, 0, 800, 800)
         Debug.WriteLine("Selected process with PID: {0}", getSelectedPID())
-        HookUtil.SetWindowPos(getSelectedPID(), valueX.Value, valueY.Value, valueWidth.Value, valueHeight.Value)
+        HookUtil.SetWindowPos(
+            getSelectedPID(),
+            CType(valueX.Value, Integer),
+            CType(valueY.Value, Integer),
+            CType(valueWidth.Value, Integer),
+            CType(valueHeight.Value, Integer),
+            CheckBoxPosition.Checked,
+            CheckBoxSize.Checked
+        )
     End Sub
 
     Private Sub form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -66,4 +74,15 @@
         End If
         Return -1
     End Function
+
+    Private Sub CheckGroupBox_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxPosition.CheckedChanged, CheckBoxSize.CheckedChanged
+        Dim checkbox As CheckBox = sender
+
+        For Each control As Control In checkbox.Parent.Controls
+            If control Is checkbox Then
+                Continue For
+            End If
+            control.Enabled = checkbox.Checked
+        Next
+    End Sub
 End Class

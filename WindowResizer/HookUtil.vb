@@ -5,7 +5,7 @@ Imports System.Diagnostics
 Public Class HookUtil
 
     Public Const SWP_NOMOVE As Short = &H2
-    Public Const SWP_NOSIZE As Short = 1
+    Public Const SWP_NOSIZE As Short = &H1
     Public Const SWP_NOZORDER As Short = &H4
     Public Const SWP_SHOWWINDOW As Short = &H40
     Public Const SWP_NOSENDCHANGING As Short = &H400
@@ -16,15 +16,28 @@ Public Class HookUtil
     End Function
 
 
-    Public Shared Sub SetWindowPos(pid As Integer, x As Integer, y As Integer, width As Integer, height As Integer)
-
+    Public Shared Sub SetWindowPos(
+        pid As Integer,
+        x As Integer,
+        y As Integer,
+        width As Integer,
+        height As Integer,
+        updatePosition As Boolean,
+        updateSize As Boolean
+    )
         Dim p As Process = Process.GetProcessById(pid)
 
-
+        Dim flags As Int32 = SWP_NOZORDER Or SWP_SHOWWINDOW Or SWP_NOSENDCHANGING
+        If Not updatePosition Then
+            flags = flags Or SWP_NOMOVE
+        End If
+        If Not updateSize Then
+            flags = flags Or SWP_NOSIZE
+        End If
 
         Dim handle As IntPtr = p.MainWindowHandle
         If handle <> IntPtr.Zero Then
-            SetWindowPos(handle, HWND_BOTTOM, x, y, width, height, SWP_NOZORDER Or SWP_SHOWWINDOW Or SWP_NOSENDCHANGING)
+            SetWindowPos(handle, HWND_BOTTOM, x, y, width, height, flags)
         End If
 
 
