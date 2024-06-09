@@ -1,16 +1,31 @@
 ﻿Public Class form
     Private Sub btnResize_Click(sender As Object, e As EventArgs) Handles btnResize.Click
         'HookUtil.SetWindowPos("Worlds Adrift", 0, 0, 800, 800)
-        Debug.WriteLine("Selected process with PID: {0}", getSelectedPID())
-        HookUtil.SetWindowPos(
-            getSelectedPID(),
-            CType(valueX.Value, Integer),
-            CType(valueY.Value, Integer),
-            CType(valueWidth.Value, Integer),
-            CType(valueHeight.Value, Integer),
-            CheckBoxPosition.Checked,
-            CheckBoxSize.Checked
-        )
+
+        Dim pid = getSelectedPID()
+
+        If pid = -1 Then
+            MessageBox.Show(Me, "Please select a process first.")
+            Return
+        ElseIf pid = -2 Then
+            Return
+        End If
+
+        Debug.WriteLine("Selected process with PID: {0}", pid)
+
+        Try
+            HookUtil.SetWindowPos(
+                pid,
+                CType(valueX.Value, Integer),
+                CType(valueY.Value, Integer),
+                CType(valueWidth.Value, Integer),
+                CType(valueHeight.Value, Integer),
+                CheckBoxPosition.Checked,
+                CheckBoxSize.Checked
+            )
+        Catch ex As Exception
+            MessageBox.Show(Me, ex.Message, "Failed to resize window", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -72,7 +87,15 @@
             End Try
 
         End If
-        Return -1
+
+        Dim pid = cbProcessList.Text.Split(" ").First
+
+        Try
+            Return Integer.Parse(pid)
+        Catch ex As Exception
+            MessageBox.Show(Me, "Failed to parse input """ & cbProcessList.Text & """ as an integer", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return -2
+        End Try
     End Function
 
     Private Sub CheckGroupBox_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxPosition.CheckedChanged, CheckBoxSize.CheckedChanged
