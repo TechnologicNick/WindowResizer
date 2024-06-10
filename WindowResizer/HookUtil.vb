@@ -15,6 +15,17 @@ Public Class HookUtil
     Public Shared Function SetWindowPos(hWnd As IntPtr, hWndInsertAfter As IntPtr, x As Int32, y As Int32, cx As Int32, cy As Int32, wFlags As Int32) As IntPtr
     End Function
 
+    <StructLayout(LayoutKind.Sequential)>
+    Public Structure Rect
+        Public Left As Integer
+        Public Top As Integer
+        Public Right As Integer
+        Public Bottom As Integer
+    End Structure
+
+    <DllImport("user32.dll")>
+    Public Shared Function GetWindowRect(ByVal hWnd As HandleRef, ByRef lpRect As Rect) As Boolean
+    End Function
 
     Public Shared Sub SetWindowPos(
         pid As Integer,

@@ -1,3 +1,5 @@
+﻿Imports System.Runtime.InteropServices
+
 Public Class form
     Private Sub btnResize_Click(sender As Object, e As EventArgs) Handles btnResize.Click
         'HookUtil.SetWindowPos("Worlds Adrift", 0, 0, 800, 800)
@@ -107,5 +109,27 @@ Public Class form
             End If
             control.Enabled = checkbox.Checked
         Next
+    End Sub
+
+    Private Sub cbProcessList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProcessList.SelectedIndexChanged
+        Dim pid = getSelectedPID()
+
+        If pid < 0 Then
+            Return
+        End If
+
+        Try
+            Dim p As Process = Process.GetProcessById(pid)
+            Dim rect As HookUtil.Rect
+            HookUtil.GetWindowRect(New HandleRef(Me, p.MainWindowHandle), rect)
+
+            valueX.Value = rect.Left
+            valueY.Value = rect.Top
+            valueWidth.Value = rect.Right - rect.Left
+            valueHeight.Value = rect.Bottom - rect.Top
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 End Class
