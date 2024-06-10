@@ -54,7 +54,7 @@ Partial Class form
         Me.btnResize.Location = New System.Drawing.Point(13, 211)
         Me.btnResize.Name = "btnResize"
         Me.btnResize.Size = New System.Drawing.Size(382, 54)
-        Me.btnResize.TabIndex = 0
+        Me.btnResize.TabIndex = 100
         Me.btnResize.Text = "Resize"
         Me.btnResize.UseVisualStyleBackColor = True
         '
@@ -79,7 +79,7 @@ Partial Class form
         Me.valueX.Minimum = New Decimal(New Integer() {-2147483648, 0, 0, -2147483648})
         Me.valueX.Name = "valueX"
         Me.valueX.Size = New System.Drawing.Size(326, 20)
-        Me.valueX.TabIndex = 2
+        Me.valueX.TabIndex = 4
         '
         'valueY
         '
@@ -91,7 +91,7 @@ Partial Class form
         Me.valueY.Minimum = New Decimal(New Integer() {-2147483648, 0, 0, -2147483648})
         Me.valueY.Name = "valueY"
         Me.valueY.Size = New System.Drawing.Size(326, 20)
-        Me.valueY.TabIndex = 3
+        Me.valueY.TabIndex = 5
         '
         'valueHeight
         '
@@ -103,7 +103,7 @@ Partial Class form
         Me.valueHeight.Minimum = New Decimal(New Integer() {-2147483648, 0, 0, -2147483648})
         Me.valueHeight.Name = "valueHeight"
         Me.valueHeight.Size = New System.Drawing.Size(326, 20)
-        Me.valueHeight.TabIndex = 5
+        Me.valueHeight.TabIndex = 8
         Me.valueHeight.Value = New Decimal(New Integer() {600, 0, 0, 0})
         '
         'valueWidth
@@ -116,7 +116,7 @@ Partial Class form
         Me.valueWidth.Minimum = New Decimal(New Integer() {-2147483648, 0, 0, -2147483648})
         Me.valueWidth.Name = "valueWidth"
         Me.valueWidth.Size = New System.Drawing.Size(326, 20)
-        Me.valueWidth.TabIndex = 4
+        Me.valueWidth.TabIndex = 7
         Me.valueWidth.Value = New Decimal(New Integer() {800, 0, 0, 0})
         '
         'labelX
@@ -161,7 +161,7 @@ Partial Class form
         Me.btnRefresh.Location = New System.Drawing.Point(342, 12)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(53, 23)
-        Me.btnRefresh.TabIndex = 8
+        Me.btnRefresh.TabIndex = 2
         Me.btnRefresh.Text = "Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
         '
@@ -189,7 +189,7 @@ Partial Class form
         Me.CheckBoxPosition.Location = New System.Drawing.Point(9, -1)
         Me.CheckBoxPosition.Name = "CheckBoxPosition"
         Me.CheckBoxPosition.Size = New System.Drawing.Size(63, 17)
-        Me.CheckBoxPosition.TabIndex = 10
+        Me.CheckBoxPosition.TabIndex = 3
         Me.CheckBoxPosition.Text = "Position"
         Me.CheckBoxPosition.UseVisualStyleBackColor = True
         '
@@ -216,7 +216,7 @@ Partial Class form
         Me.CheckBoxSize.Location = New System.Drawing.Point(9, -1)
         Me.CheckBoxSize.Name = "CheckBoxSize"
         Me.CheckBoxSize.Size = New System.Drawing.Size(46, 17)
-        Me.CheckBoxSize.TabIndex = 8
+        Me.CheckBoxSize.TabIndex = 6
         Me.CheckBoxSize.Text = "Size"
         Me.CheckBoxSize.UseVisualStyleBackColor = True
         '
