@@ -1,4 +1,4 @@
-﻿Public Class form
+Public Class form
     Private Sub btnResize_Click(sender As Object, e As EventArgs) Handles btnResize.Click
         'HookUtil.SetWindowPos("Worlds Adrift", 0, 0, 800, 800)
 
@@ -61,7 +61,7 @@
 
             If p.MainWindowTitle IsNot "" Then
                 Dim name As String = spacing + p.Id.ToString() + " - " + p.MainWindowTitle + fileName
-                cbProcessList.Items.Add(Name)
+                cbProcessList.Items.Add(name)
             Else
                 Dim name As String = spacing + p.Id.ToString() + " - <no title>" + fileName
                 noTitleList.Add(name)
